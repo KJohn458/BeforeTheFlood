@@ -6,6 +6,12 @@ using TMPro;
 public class GameplayUI : MonoBehaviour
 {
     public TextMeshProUGUI health, resources, wave, timer;
+    public GameObject upgradePopup;
+
+    private void Start()
+    {
+        GameManager.Instance.ev += SelectionChanged;
+    }
 
     void Update()
     {
@@ -21,5 +27,11 @@ public class GameplayUI : MonoBehaviour
         {
             timer.transform.parent.gameObject.SetActive(false);
         }
+    }
+
+    void SelectionChanged(GameObject obj)
+    {
+        if (obj == null) upgradePopup.SetActive(false);
+        else upgradePopup.SetActive(true);
     }
 }

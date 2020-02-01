@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public delegate void SelectedChangeEvent(GameObject obj);
+    public event SelectedChangeEvent ev;
+
     public static GameManager Instance = null;
     public int lives = 0;
     public bool lose = false;
@@ -14,6 +17,10 @@ public class GameManager : MonoBehaviour
     public float timeToNextWave = 45;
     public GameObject waveContainer;
     public bool win = false;
+    public GameObject selected { get; private set; }
+
+    GameObject prev = null;
+    public GameObject change = null;
 
     private void Start()
     {
@@ -78,5 +85,17 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+        //debug code for testing selection change
+        if (prev != change)
+        {
+            ChangeSelection(change);
+        }
+        prev = change;
+    }
+
+    public void ChangeSelection(GameObject o)
+    {
+        selected = o;
+        ev?.Invoke(selected);
     }
 }
