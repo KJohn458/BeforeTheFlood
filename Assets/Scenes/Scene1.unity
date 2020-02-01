@@ -404,6 +404,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pivot: {fileID: 1224714842}
   dragSpeed: 0.5
+  minZoom: 3
+  maxZoom: 25
 --- !u!1 &1224714842
 GameObject:
   m_ObjectHideFlags: 0
