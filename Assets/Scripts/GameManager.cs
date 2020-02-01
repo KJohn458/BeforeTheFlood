@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public bool planning = true;
     float time = 0f;
     public float timeToNextWave = 45;
+    public GameObject waveContainer;
+    public bool win = false;
 
     private void Start()
     {
@@ -43,24 +45,38 @@ public class GameManager : MonoBehaviour
     {
         time = Time.time;
         planning = true;
+        currentWave++;
+        if (currentWave == waveContainer.transform.childCount)
+        {
+            win = true;
+        }
     }
 
     public void BeginWave()
     {
         planning = false;
         time = Time.time;
-        //tell current wave to begin
     }
 
     private void Update()
     {
-        if (planning && Time.time - time > timeToNextWave)
+        if (!win && !lose)
         {
-            BeginWave(); 
-        }
-        else
-        {
-            //check for completion for the current wave
+            if (planning && Time.time - time > timeToNextWave)
+            {
+                BeginWave();
+            }
+            else
+            {
+                Wave w = waveContainer.transform.GetChild(currentWave).GetComponent<Wave>();
+                if (w.done)
+                {
+                    WaveComplete();
+                } else
+                {
+                    w.Spawn();
+                }
+            }
         }
     }
 }

@@ -8,11 +8,34 @@ public class Wave : MonoBehaviour
     public int toSpawn;
     public int lane;
     public float spawnRate;
+    [SerializeField]Queue<GameObject> enemies = new Queue<GameObject>();
 
     int spawned;
     int killed;
     float lastSpawned = 0f;
-    bool done { get { return (killed == spawned && spawned == toSpawn); } }
+    public bool done { get { return (killed == spawned && spawned == toSpawn); } }
+
+    private void Start()
+    {
+        CreateEnemy(toSpawn);
+    }
+
+    void CreateEnemy(int s = 1)
+    {
+        for (int i = 0; i < s; i++)
+        {
+            GameObject obj = Instantiate(enemy);
+            obj.SetActive(false);
+            obj.GetComponent<TestEnemy>().Create(this);
+            enemies.Enqueue(obj);
+        }
+    }
+
+    GameObject GetEnemyFromQueue()
+    {
+        if (enemies.Count == 0) CreateEnemy();
+        return enemies.Dequeue();
+    }
 
     public void Spawn()
     {
@@ -26,15 +49,18 @@ public class Wave : MonoBehaviour
                 subwave.Spawn();
             }
         }
-        if (childrenDone && !done && lastSpawned + spawnRate < Time.time)
+        if (childrenDone && !done && spawned < toSpawn && lastSpawned + spawnRate < Time.time)
         {
-            GameObject obj = Instantiate(enemy);
+            GameObject obj = GetEnemyFromQueue();
+            obj.SetActive(true);
             //set enemy position
             spawned++;
-            //hook up to enemy death
             lastSpawned = Time.time;
         }
     }
 
-    public void SpawnedEnemyKilled() { killed++; }
+    public void SpawnedEnemyKilled(GameObject e) {
+        killed++;
+        enemies.Enqueue(e);
+    }
 }
