@@ -25,7 +25,7 @@ public class Wave : MonoBehaviour
     private void Start()
     {
         p = ObjectPoolManager.getPool(enemy);
-        p.Create(toSpawn);
+        p.Create(true, toSpawn);
         h = EnemySpawner.Instance.spawnHelpers[lane % EnemySpawner.Instance.spawnHelpers.Length].GetComponent<SpawnHelper>();
     }
 
@@ -66,7 +66,7 @@ public class Wave : MonoBehaviour
                 else subwave.Spawn();
             }
         }
-        if (childrenDone && !done && spawned < toSpawn && lastSpawned + spawnRate < Time.time)
+        if (childrenDone && !done && spawned < toSpawn && lastSpawned + spawnRate < Time.timeSinceLevelLoad)
         {
             GameObject obj = p.Get();
             obj.SetActive(true);
@@ -76,7 +76,7 @@ public class Wave : MonoBehaviour
             obj.GetComponent<NavMeshAgent>().enabled = true;
             obj.GetComponent<EnemyBehavior>().FindPath(h.wayPoint);
             spawned++;
-            lastSpawned = Time.time;
+            lastSpawned = Time.timeSinceLevelLoad;
         }
     }
 

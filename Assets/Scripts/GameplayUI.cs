@@ -22,7 +22,7 @@ public class GameplayUI : MonoBehaviour
         {
             wave.text = wave.text + " begins in:";
             timer.transform.parent.gameObject.SetActive(true);
-            timer.text = ((int)(GameManager.Instance.timeToNextWave - (Time.time - GameManager.Instance.time))+1).ToString();
+            timer.text = ((int)(GameManager.Instance.timeToNextWave - (Time.timeSinceLevelLoad - GameManager.Instance.time))+1).ToString();
         } else
         {
             timer.transform.parent.gameObject.SetActive(false);

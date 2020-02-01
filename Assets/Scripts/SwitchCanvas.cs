@@ -5,20 +5,24 @@ using UnityEngine;
 public class SwitchCanvas : MonoBehaviour
 {
     public GameObject tgt;
+    public GameObject src = null;
     public bool togglePause = true;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (togglePause && !GameManager.Instance.win && !GameManager.Instance.lose)
         {
-            Switch();
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Switch();
+            }
         }
     }
 
     public void Switch()
     {
         tgt.SetActive(true);
-        gameObject.SetActive(false);
+        if (src != null) src.SetActive(false); else gameObject.SetActive(false);
         if (togglePause) GameManager.Instance.TogglePause();
     }
 }
