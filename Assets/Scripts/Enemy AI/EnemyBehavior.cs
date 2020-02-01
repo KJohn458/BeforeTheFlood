@@ -7,6 +7,7 @@ public class EnemyBehavior : MonoBehaviour
 {
     EnemyStateMachine stateMachine;
     NavMeshAgent nav;
+    Health health;
     Camera camera;
 
     private Vector3 currentWaypoint = Vector3.zero;
@@ -15,6 +16,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         nav = GetComponent<NavMeshAgent>();
         stateMachine = GetComponent<EnemyStateMachine>();
+        health = GetComponent<Health>();
 
         //Debug
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -22,7 +24,8 @@ public class EnemyBehavior : MonoBehaviour
 
     void OnEnable()
     {
-
+        health.ResetHealth();
+        health.OnDeath += OnEnemyDeath;
     }
 
     void Update()
@@ -64,9 +67,16 @@ public class EnemyBehavior : MonoBehaviour
 
             if (objectHit.gameObject.tag == "Enemy")
             {
-                objectHit.gameObject.SetActive(false);
+                health.TakeDamage(20);
             }
         }
+    }
+
+    void OnEnemyDeath()
+    {
+        health.OnDeath -= OnEnemyDeath;
+        gameObject.SetActive(false);
+
     }
 
     void OnDisable()
