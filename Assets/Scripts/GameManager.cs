@@ -62,9 +62,9 @@ public class GameManager : MonoBehaviour
     {
         if (!win && !lose)
         {
-            if (planning && Time.time - time > timeToNextWave)
+            if (planning)
             {
-                BeginWave();
+                if (Time.time - time >= timeToNextWave) BeginWave();
             }
             else
             {
