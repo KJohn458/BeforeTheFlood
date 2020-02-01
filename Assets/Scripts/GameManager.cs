@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public GameObject waveContainer;
     public bool win = false;
     public GameObject selected { get; private set; }
+    public bool paused = false;
 
     GameObject prev = null;
     public GameObject change = null;
@@ -67,21 +68,25 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (!win && !lose)
+        if (!paused)
         {
-            if (planning)
+            if (!win && !lose)
             {
-                if (Time.time - time >= timeToNextWave) BeginWave();
-            }
-            else
-            {
-                Wave w = waveContainer.transform.GetChild(currentWave).GetComponent<Wave>();
-                if (w.done)
+                if (planning)
                 {
-                    WaveComplete();
-                } else
+                    if (Time.time - time >= timeToNextWave) BeginWave();
+                }
+                else
                 {
-                    w.Spawn();
+                    Wave w = waveContainer.transform.GetChild(currentWave).GetComponent<Wave>();
+                    if (w.done)
+                    {
+                        WaveComplete();
+                    }
+                    else
+                    {
+                        w.Spawn();
+                    }
                 }
             }
         }
@@ -97,5 +102,12 @@ public class GameManager : MonoBehaviour
     {
         selected = o;
         ev?.Invoke(selected);
+    }
+
+    public void TogglePause()
+    {
+        paused = !paused;
+        if (paused) Time.timeScale = 0f;
+        else Time.timeScale = 1f;
     }
 }
