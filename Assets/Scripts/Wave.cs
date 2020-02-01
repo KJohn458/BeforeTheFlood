@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Wave : MonoBehaviour
 {
@@ -17,12 +18,15 @@ public class Wave : MonoBehaviour
     public bool handleChildrenAllAtOnce = false;
     int currentWave = 0;
 
+    public SpawnHelper h;
+
     ObjectPool p;
 
     private void Start()
     {
         p = ObjectPoolManager.getPool(enemy);
         p.Create(toSpawn);
+        h = EnemySpawner.Instance.spawnHelpers[lane % EnemySpawner.Instance.spawnHelpers.Length].GetComponent<SpawnHelper>();
     }
 
     public bool ChildrenDone()
@@ -67,7 +71,10 @@ public class Wave : MonoBehaviour
             GameObject obj = p.Get();
             obj.SetActive(true);
             obj.GetComponent<TestEnemy>().Create(this);
-            //set enemy position
+            obj.GetComponent<NavMeshAgent>().enabled = false;
+            obj.transform.position = h.spawnPoint.transform.position;
+            obj.GetComponent<NavMeshAgent>().enabled = true;
+            obj.GetComponent<EnemyBehavior>().FindPath(h.wayPoint);
             spawned++;
             lastSpawned = Time.time;
         }
