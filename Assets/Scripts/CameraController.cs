@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    Vector2[] mousePosLastFrame = new Vector2[2];
+    Vector3[] mousePosLastFrame = new Vector3[2];
     public GameObject pivot;
     public float dragSpeed;
     Camera cam;
-
-    Vector3 operator *()
+    Plane p;
 
     private void Start()
     {
         cam = Camera.main;
+        p = new Plane(Vector3.up, Vector3.zero);
     }
 
     private void Update()
@@ -21,9 +21,13 @@ public class CameraController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             mousePosLastFrame[0] = Input.mousePosition;
-        } else if (Input.GetMouseButton(0))
+        }
+        else if (Input.GetMouseButton(0))
         {
             pivot.transform.eulerAngles += new Vector3(mousePosLastFrame[0].y - Input.mousePosition.y, mousePosLastFrame[0].x - Input.mousePosition.x);
+            Debug.Log(pivot.transform.eulerAngles.x);
+            if (pivot.transform.eulerAngles.x > 350) pivot.transform.eulerAngles = new Vector3(-10, pivot.transform.eulerAngles.y);
+            if (pivot.transform.eulerAngles.x < 280) pivot.transform.eulerAngles = new Vector3(-80, pivot.transform.eulerAngles.y);
             mousePosLastFrame[0] = Input.mousePosition;
         }
         if (Input.GetMouseButtonDown(1))
@@ -32,10 +36,22 @@ public class CameraController : MonoBehaviour
         }
         else if (Input.GetMouseButton(1))
         {
-            Vector3 heading = pivot.transform.position - cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
-            pivot.transform.forward = (heading / heading.magnitude)*-1;
-            Vector3 inp = new Vector3(mousePosLastFrame[1].x - Input.mousePosition.x, 0, mousePosLastFrame[1].y - Input.mousePosition.y);
-            pivot.transform.position += (inp * pivot.transform.forward * dragSpeed);
+           
+            if (Vector3.Distance(mousePosLastFrame[1], Input.mousePosition) > 0) {
+                Ray ray1 = cam.ScreenPointToRay(mousePosLastFrame[1]);
+                Ray ray2 = cam.ScreenPointToRay(Input.mousePosition);
+                float enter1, enter2;
+                if (p.Raycast(ray1,out enter1) && p.Raycast(ray2,out enter2))
+                {
+                    Vector3 hit = ray1.GetPoint(enter1) - ray2.GetPoint(enter2);
+                    pivot.transform.position += hit;
+                }
+            }
+            /*
+            Vector3 up = Vector3.ProjectOnPlane(Vector3.up, pivot.transform.position - cam.transform.position) * inp.z;
+            Vector3 right = Vector3.ProjectOnPlane(Vector3.right, pivot.transform.position - cam.transform.position) * inp.x;
+            pivot.transform.position += (Vector3.ProjectOnPlane(up, Vector3.up) * dragSpeed);
+            pivot.transform.position += (Vector3.ProjectOnPlane(right, Vector3.up) * dragSpeed);*/
             mousePosLastFrame[1] = Input.mousePosition;
         }
     }
