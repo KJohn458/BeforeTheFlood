@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 389944274}
   - component: {fileID: 389944273}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: wave1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 646466344}
   - component: {fileID: 646466345}
   m_Layer: 0
-  m_Name: GameObject (2)
+  m_Name: 2-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -227,7 +227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 646996701}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: wavecontainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 692454216}
   - component: {fileID: 692454217}
   m_Layer: 0
-  m_Name: GameObject (3)
+  m_Name: 3-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -501,7 +501,7 @@ GameObject:
   - component: {fileID: 971651275}
   - component: {fileID: 971651276}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: wave2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 1267491968}
   - component: {fileID: 1267491969}
   m_Layer: 0
-  m_Name: GameObject (2)
+  m_Name: wave3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10256,7 +10256,7 @@ GameObject:
   - component: {fileID: 1606645960}
   - component: {fileID: 1606645961}
   m_Layer: 0
-  m_Name: GameObject (2)
+  m_Name: 3-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10304,7 +10304,7 @@ GameObject:
   - component: {fileID: 1812248671}
   - component: {fileID: 1812248672}
   m_Layer: 0
-  m_Name: GameObject (3)
+  m_Name: 2-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
