@@ -13,38 +13,52 @@ public class ProjTurret : MonoBehaviour
     Vector3 shooterPosition;
     Vector3 shooterVelocity;
     bool hasFired = false;
+    float timer = 0.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 shooterPosition = shooter.transform.position;
-        Vector3 shooterVelocity = shooter.GetComponent<Rigidbody>() ? shooter.GetComponent<Rigidbody>().velocity : Vector3.zero;
-        shooter = this.gameObject;
+        shooter = gameObject;
+        shooterPosition = shooter.transform.position;
+        shooterVelocity = shooter.GetComponent<Rigidbody>() ? shooter.GetComponent<Rigidbody>().velocity : Vector3.zero;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        else if(timer < 0)
+        {
+            timer = 0;
+        }
+        else
+        {
+            hasFired = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy" && hasFired == false)
         {
-            Vector3 interceptPoint = getTargetPosition(other, shooterPosition, shooterVelocity);
-            GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
+            target = other.gameObject;
+            Vector3 interceptPoint = getTargetPosition(target, shooterPosition, shooterVelocity);
+            GameObject bullet = Instantiate(projectile, shooterPosition, Quaternion.identity) as GameObject;
             bullet.GetComponent<Rigidbody>().velocity = interceptPoint.normalized*shotSpeed;
-            hasFired = true; 
+            hasFired = true;
+            timer = 3.0f;
         }
     }
 
-    public Vector3 getTargetPosition(Collider other, Vector3 shooterPosition, Vector3 shooterVelocity)
+    public Vector3 getTargetPosition(GameObject target, Vector3 shooterPosition, Vector3 shooterVelocity)
     {
-        Vector3 targetPosition = other.transform.position;
-        Vector3 targetVelocity = other.GetComponent<Rigidbody>() ? other.GetComponent<Rigidbody>().velocity : Vector3.zero;
-        Vector3 interceptPoint = FirstOrderIntercept(shooterPosition, shooterVelocity, shotSpeed, targetPosition, targetVelocity);
-        return interceptPoint;
+        Vector3 targetPosition = target.transform.position;
+        Vector3 targetVelocity = target.GetComponent<Rigidbody>() ? target.GetComponent<Rigidbody>().velocity : Vector3.zero;
+        Vector3 whereTheTargetWillBe = FirstOrderIntercept(shooterPosition, shooterVelocity, shotSpeed, targetPosition, targetVelocity);
+        return whereTheTargetWillBe;
     }
 
 
@@ -97,4 +111,6 @@ public class ProjTurret : MonoBehaviour
         }
         else return Mathf.Max(-b / (2f * a), 0f);
     }
+
+
 }
