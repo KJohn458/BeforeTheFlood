@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     public bool lose = false;
     public int resource = 0;
     public int currentWave = 0;
+    public bool planning = true;
+    float time = 0f;
+    public float timeToNextWave = 45;
 
     private void Start()
     {
@@ -34,5 +37,30 @@ public class GameManager : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void WaveComplete()
+    {
+        time = Time.time;
+        planning = true;
+    }
+
+    public void BeginWave()
+    {
+        planning = false;
+        time = Time.time;
+        //tell current wave to begin
+    }
+
+    private void Update()
+    {
+        if (planning && Time.time - time > timeToNextWave)
+        {
+            BeginWave(); 
+        }
+        else
+        {
+            //check for completion for the current wave
+        }
     }
 }
