@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SingleAttackTurret : MonoBehaviour
+public class ProjTurret : MonoBehaviour
 {
     [SerializeField]
-    private BasicEnemy enemy;
-    //private GameManager manager;
+    public GameObject projectile; 
     // Start is called before the first frame update
     void Start()
     {
-        //manager.getTimer(); or somethin like that
+        
     }
 
     // Update is called once per frame
@@ -21,12 +20,10 @@ public class SingleAttackTurret : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Enemy")
+        if (other.tag == "Enemy")
         {
-            enemy = other.GetComponent<BasicEnemy>();
-            enemy.subHealth();
-            
-            Debug.Log("Fire");
+            GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
+            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 10);
         }
     }
 }
