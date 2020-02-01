@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         time = Time.timeSinceLevelLoad;
+        ObjectPoolManager.dict.Clear();
     }
 
     private void Start()
