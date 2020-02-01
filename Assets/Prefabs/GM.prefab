@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3494347899631534924}
   - component: {fileID: 3494347899631534925}
+  - component: {fileID: 7328697805027992956}
   m_Layer: 0
   m_Name: GM
   m_TagString: Untagged
@@ -48,6 +49,20 @@ MonoBehaviour:
   resource: 0
   currentWave: 0
   planning: 1
+  time: 0
   timeToNextWave: 5
   waveContainer: {fileID: 0}
   win: 0
+  paused: 0
+--- !u!114 &7328697805027992956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3494347899631534926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6488aa9a9260d44486885e27c60e118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
