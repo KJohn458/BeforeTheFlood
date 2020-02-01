@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public int resource = 0;
     public int currentWave = 0;
     public bool planning = true;
-    float time = 0f;
+    public float time = 0f;
     public float timeToNextWave = 45;
     public GameObject waveContainer;
     public bool win = false;
