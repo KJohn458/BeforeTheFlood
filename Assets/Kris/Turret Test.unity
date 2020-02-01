@@ -469,6 +469,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 5060465907942823449, guid: 6d93f79be0b18e740b6efca41b4959ff,
     type: 3}
+  shotSpeed: 5
+  shooter: {fileID: 0}
+  target: {fileID: 0}
 --- !u!65 &423124606
 BoxCollider:
   m_ObjectHideFlags: 0

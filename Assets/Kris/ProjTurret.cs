@@ -7,17 +7,19 @@ public class ProjTurret : MonoBehaviour
     [SerializeField]
     public GameObject projectile;
 
-    float shotSpeed;
+    public float shotSpeed;
     public GameObject shooter;
     public GameObject target;
     Vector3 shooterPosition;
     Vector3 shooterVelocity;
+    bool hasFired = false;
 
     // Start is called before the first frame update
     void Start()
     {
         Vector3 shooterPosition = shooter.transform.position;
         Vector3 shooterVelocity = shooter.GetComponent<Rigidbody>() ? shooter.GetComponent<Rigidbody>().velocity : Vector3.zero;
+        shooter = this.gameObject;
     }
 
     // Update is called once per frame
@@ -28,19 +30,21 @@ public class ProjTurret : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "Enemy" && hasFired == false)
         {
-            getTargetPosition(other, shooterPosition, shooterVelocity);
+            Vector3 interceptPoint = getTargetPosition(other, shooterPosition, shooterVelocity);
             GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
-            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 10);
+            bullet.GetComponent<Rigidbody>().velocity = interceptPoint.normalized*shotSpeed;
+            hasFired = true; 
         }
     }
 
-    public void getTargetPosition(Collider other, Vector3 shooterPosition, Vector3 shooterVelocity)
+    public Vector3 getTargetPosition(Collider other, Vector3 shooterPosition, Vector3 shooterVelocity)
     {
         Vector3 targetPosition = other.transform.position;
         Vector3 targetVelocity = other.GetComponent<Rigidbody>() ? other.GetComponent<Rigidbody>().velocity : Vector3.zero;
         Vector3 interceptPoint = FirstOrderIntercept(shooterPosition, shooterVelocity, shotSpeed, targetPosition, targetVelocity);
+        return interceptPoint;
     }
 
 
