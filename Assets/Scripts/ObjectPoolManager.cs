@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPoolManager : MonoBehaviour
+public class ObjectPoolManager
 {
     public static Dictionary<GameObject, ObjectPool> dict = new Dictionary<GameObject, ObjectPool>();
 
