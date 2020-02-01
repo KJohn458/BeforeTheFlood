@@ -14,7 +14,7 @@ public class Wave : MonoBehaviour
     int spawned;
     int killed;
     float lastSpawned = 0f;
-    public bool done { get { return (toSpawn == 0) ? ChildrenDone() : (killed == spawned && spawned == toSpawn); } }
+    public bool done { get { return (toSpawn == 0) ? ChildrenDone() : (killed >= spawned && spawned >= toSpawn); } }
     public bool handleChildrenAllAtOnce = false;
     int currentWave = 0;
 
@@ -70,11 +70,12 @@ public class Wave : MonoBehaviour
         {
             GameObject obj = p.Get();
             obj.SetActive(true);
-            obj.GetComponent<TestEnemy>().Create(this);
+            //obj.GetComponent<TestEnemy>().Create(this);
             obj.GetComponent<NavMeshAgent>().enabled = false;
             obj.transform.position = h.spawnPoint.transform.position;
             obj.GetComponent<NavMeshAgent>().enabled = true;
             obj.GetComponent<EnemyBehavior>().FindPath(h.wayPoint);
+            obj.GetComponent<Health>().OnDeath += ()=>SpawnedEnemyKilled(obj);
             spawned++;
             lastSpawned = Time.timeSinceLevelLoad;
         }
