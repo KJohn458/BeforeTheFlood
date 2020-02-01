@@ -10336,7 +10336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d745055743096419ab76cf4c7c4e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 6877814077255409952, guid: 7c2b863d132fb554b971059c83f4aa32, type: 3}
+  enemy: {fileID: 6877814077255409952, guid: 5b32bf87f7d001f468cd7789fa4cfeb4, type: 3}
   toSpawn: 5
   lane: 0
   spawnRate: 0.5
