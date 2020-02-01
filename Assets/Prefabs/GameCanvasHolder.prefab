@@ -205,6 +205,11 @@ PrefabInstance:
       propertyPath: tgt
       value: 
       objectReference: {fileID: 3745369926874413644}
+    - target: {fileID: 1083747205417405102, guid: ccb51bd74f22c7c44b2d8c691436307b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5597707433332906352, guid: ccb51bd74f22c7c44b2d8c691436307b,
         type: 3}
       propertyPath: m_LocalPosition.x

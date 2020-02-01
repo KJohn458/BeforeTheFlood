@@ -20,9 +20,6 @@ public class GameManager : MonoBehaviour
     public GameObject selected { get; private set; }
     public bool paused = false;
 
-    GameObject prev = null;
-    public GameObject change = null;
-
     private void Start()
     {
         if (Instance == null)
@@ -90,12 +87,6 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        //debug code for testing selection change
-        if (prev != change)
-        {
-            ChangeSelection(change);
-        }
-        prev = change;
     }
 
     public void ChangeSelection(GameObject o)
