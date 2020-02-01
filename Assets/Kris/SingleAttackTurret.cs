@@ -9,11 +9,14 @@ public class SingleAttackTurret : MonoBehaviour
 
     private float timer = 0.0f;
     private bool hasFired = false;
-    //private GameManager manager;
+
+    [SerializeField]
+    private int turretLevel;
+
     // Start is called before the first frame update
     void Start()
     {
-        //manager.getTimer(); or somethin like that
+        turretLevel = 0;
     }
 
     // Update is called once per frame
@@ -35,11 +38,29 @@ public class SingleAttackTurret : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Enemy")
+        if (other.tag == "Enemy" && hasFired == false && turretLevel == 1)
         {
             enemy = other.GetComponent<BasicEnemy>();
             enemy.subHealth();
             
+            Debug.Log("Fire");
+
+            hasFired = true;
+        }
+        else if (other.tag == "Enemy" && hasFired == false && turretLevel == 2)
+        {
+            enemy = other.GetComponent<BasicEnemy>();
+            enemy.subHealth();
+
+            Debug.Log("Fire");
+
+            hasFired = true;
+        }
+        else if (other.tag == "Enemy" && hasFired == false && turretLevel == 3)
+        {
+            enemy = other.GetComponent<BasicEnemy>();
+            enemy.subHealth();
+
             Debug.Log("Fire");
 
             hasFired = true;

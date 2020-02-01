@@ -10,14 +10,20 @@ public class ProjTurret : MonoBehaviour
     public float shotSpeed;
     public GameObject shooter;
     public GameObject target;
+   
     Vector3 shooterPosition;
     Vector3 shooterVelocity;
+
     bool hasFired = false;
     float timer = 0.0f;
+
+    [SerializeField]
+    private int turretLevel;
 
     // Start is called before the first frame update
     void Start()
     {
+        turretLevel = 0;
         shooter = gameObject;
         shooterPosition = shooter.transform.position;
         shooterVelocity = shooter.GetComponent<Rigidbody>() ? shooter.GetComponent<Rigidbody>().velocity : Vector3.zero;
@@ -42,15 +48,30 @@ public class ProjTurret : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy" && hasFired == false)
+        if (other.tag == "Enemy" && hasFired == false && turretLevel == 1)
         {
-            target = other.gameObject;
-            Vector3 interceptPoint = getTargetPosition(target, shooterPosition, shooterVelocity);
-            GameObject bullet = Instantiate(projectile, shooterPosition, Quaternion.identity) as GameObject;
-            bullet.GetComponent<Rigidbody>().velocity = interceptPoint.normalized*shotSpeed;
-            hasFired = true;
+            attackFunc(other);
             timer = 3.0f;
         }
+        else if(other.tag == "Enemy" && hasFired == false && turretLevel == 2)
+        {
+            attackFunc(other);
+            timer = 2.0f;
+        }
+        else if(other.tag == "Enemy" && hasFired == false && turretLevel == 3)
+        {
+            attackFunc(other);
+            timer = 1.0f; 
+        }
+    }
+
+    private void attackFunc(Collider other)
+    {
+        target = other.gameObject;
+        Vector3 interceptPoint = getTargetPosition(target, shooterPosition, shooterVelocity);
+        GameObject bullet = Instantiate(projectile, shooterPosition, Quaternion.identity) as GameObject;
+        bullet.GetComponent<Rigidbody>().velocity = interceptPoint.normalized * shotSpeed;
+        hasFired = true;
     }
 
     public Vector3 getTargetPosition(GameObject target, Vector3 shooterPosition, Vector3 shooterVelocity)
