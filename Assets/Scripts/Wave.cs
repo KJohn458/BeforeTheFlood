@@ -17,26 +17,12 @@ public class Wave : MonoBehaviour
     public bool handleChildrenAllAtOnce = false;
     int currentWave = 0;
 
+    ObjectPool p;
+
     private void Start()
     {
-        CreateEnemy(toSpawn);
-    }
-
-    void CreateEnemy(int s = 1)
-    {
-        for (int i = 0; i < s; i++)
-        {
-            GameObject obj = Instantiate(enemy);
-            obj.SetActive(false);
-            obj.GetComponent<TestEnemy>().Create(this);
-            enemies.Enqueue(obj);
-        }
-    }
-
-    GameObject GetEnemyFromQueue()
-    {
-        if (enemies.Count == 0) CreateEnemy();
-        return enemies.Dequeue();
+        p = ObjectPoolManager.getPool(enemy);
+        p.Create(toSpawn);
     }
 
     public bool ChildrenDone()
@@ -78,8 +64,9 @@ public class Wave : MonoBehaviour
         }
         if (childrenDone && !done && spawned < toSpawn && lastSpawned + spawnRate < Time.time)
         {
-            GameObject obj = GetEnemyFromQueue();
+            GameObject obj = p.Get();
             obj.SetActive(true);
+            obj.GetComponent<TestEnemy>().Create(this);
             //set enemy position
             spawned++;
             lastSpawned = Time.time;
@@ -88,6 +75,6 @@ public class Wave : MonoBehaviour
 
     public void SpawnedEnemyKilled(GameObject e) {
         killed++;
-        enemies.Enqueue(e);
+        p.Return(e);
     }
 }
