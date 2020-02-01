@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62b7bb39a8c8a84a9936e62c458702a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: InitialAITest
+  levelName: LevelSelect
 --- !u!1 &394339270140611941
 GameObject:
   m_ObjectHideFlags: 0
