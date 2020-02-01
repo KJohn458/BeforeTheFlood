@@ -23,7 +23,7 @@ public class ProjTurret : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        turretLevel = 0;
+        turretLevel = 1;
         shooter = gameObject;
         shooterPosition = shooter.transform.position;
         shooterVelocity = shooter.GetComponent<Rigidbody>() ? shooter.GetComponent<Rigidbody>().velocity : Vector3.zero;

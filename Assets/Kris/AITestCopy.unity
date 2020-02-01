@@ -206,7 +206,7 @@ PrefabInstance:
         type: 3}
       propertyPath: enemy
       value: 
-      objectReference: {fileID: 4607820256242612292, guid: d4396b39ceca68048a6869ae4205e8d1,
+      objectReference: {fileID: 4898718065433144009, guid: 90f43f0245bdf1844845bb79abba5b37,
         type: 3}
     - target: {fileID: 1384766358878590996, guid: 47468dcbb03569f49ae3accb68e7806b,
         type: 3}
@@ -299,13 +299,13 @@ PrefabInstance:
         type: 3}
       propertyPath: enemy
       value: 
-      objectReference: {fileID: 4607820256242612292, guid: d4396b39ceca68048a6869ae4205e8d1,
+      objectReference: {fileID: 4898718065433144009, guid: 90f43f0245bdf1844845bb79abba5b37,
         type: 3}
     - target: {fileID: 1384766359435804636, guid: 47468dcbb03569f49ae3accb68e7806b,
         type: 3}
       propertyPath: enemy
       value: 
-      objectReference: {fileID: 4607820256242612292, guid: d4396b39ceca68048a6869ae4205e8d1,
+      objectReference: {fileID: 4898718065433144009, guid: 90f43f0245bdf1844845bb79abba5b37,
         type: 3}
     - target: {fileID: 1384766359641777044, guid: 47468dcbb03569f49ae3accb68e7806b,
         type: 3}
@@ -1384,6 +1384,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Turret
       objectReference: {fileID: 0}
+    - target: {fileID: 5577698228102678127, guid: 800b700170384a549a135b972583b81a,
+        type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 8437680499744594414, guid: a61c9e9adc19e9742bd355ebb64a325e,
+        type: 3}
     - target: {fileID: 5577698228102678163, guid: 800b700170384a549a135b972583b81a,
         type: 3}
       propertyPath: m_LocalPosition.x
