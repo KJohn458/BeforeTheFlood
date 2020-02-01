@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour
 {
     Vector3[] mousePosLastFrame = new Vector3[2];
     public GameObject pivot;
-    public float dragSpeed;
+    public float dragSpeed, minZoom, maxZoom;
     Camera cam;
     Plane p;
 
@@ -25,7 +25,6 @@ public class CameraController : MonoBehaviour
         else if (Input.GetMouseButton(0))
         {
             pivot.transform.eulerAngles += new Vector3(mousePosLastFrame[0].y - Input.mousePosition.y, mousePosLastFrame[0].x - Input.mousePosition.x);
-            Debug.Log(pivot.transform.eulerAngles.x);
             if (pivot.transform.eulerAngles.x > 350) pivot.transform.eulerAngles = new Vector3(-10, pivot.transform.eulerAngles.y);
             if (pivot.transform.eulerAngles.x < 280) pivot.transform.eulerAngles = new Vector3(-80, pivot.transform.eulerAngles.y);
             mousePosLastFrame[0] = Input.mousePosition;
@@ -47,12 +46,8 @@ public class CameraController : MonoBehaviour
                     pivot.transform.position += hit;
                 }
             }
-            /*
-            Vector3 up = Vector3.ProjectOnPlane(Vector3.up, pivot.transform.position - cam.transform.position) * inp.z;
-            Vector3 right = Vector3.ProjectOnPlane(Vector3.right, pivot.transform.position - cam.transform.position) * inp.x;
-            pivot.transform.position += (Vector3.ProjectOnPlane(up, Vector3.up) * dragSpeed);
-            pivot.transform.position += (Vector3.ProjectOnPlane(right, Vector3.up) * dragSpeed);*/
             mousePosLastFrame[1] = Input.mousePosition;
         }
+        transform.localPosition = new Vector3(0, 0, Mathf.Clamp(transform.localPosition.z - Input.mouseScrollDelta.y, minZoom, maxZoom));
     }
 }
