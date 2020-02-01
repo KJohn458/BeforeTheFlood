@@ -1765,11 +1765,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4607820256242612292, guid: d4396b39ceca68048a6869ae4205e8d1,
         type: 3}
-    - target: {fileID: 375996757736624873, guid: b12b617315407e840b41f327f8fcda9c,
-        type: 3}
-      propertyPath: pooledAmount
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7080303355705249061, guid: b12b617315407e840b41f327f8fcda9c,
         type: 3}
       propertyPath: m_Name

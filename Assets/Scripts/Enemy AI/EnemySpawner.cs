@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour
 
     Dictionary<GameObject, SpawnHelper> spawnDict = new Dictionary<GameObject, SpawnHelper>();
 
-    private ObjectPooler.Key enemyKey = ObjectPooler.Key.Enemies;
+    private ObjectPooler.Key enemyKey = ObjectPooler.Key.Enemy;
 
     void Awake()
     {

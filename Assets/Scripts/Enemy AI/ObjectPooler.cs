@@ -14,7 +14,7 @@ public class ObjectPooler : MonoBehaviour
 
     public enum Key
     {
-        Enemies
+        Enemy
     }
 
     public Key key;
