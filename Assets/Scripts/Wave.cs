@@ -7,9 +7,11 @@ public class Wave : MonoBehaviour
     public GameObject enemy;
     public int toSpawn;
     public int lane;
+    public float spawnRate;
 
     int spawned;
     int killed;
+    float lastSpawned = 0f;
     bool done { get { return (killed == spawned && spawned == toSpawn); } }
 
     public void Spawn()
@@ -24,12 +26,13 @@ public class Wave : MonoBehaviour
                 subwave.Spawn();
             }
         }
-        if (childrenDone && !done)
+        if (childrenDone && !done && lastSpawned + spawnRate < Time.time)
         {
             GameObject obj = Instantiate(enemy);
             //set enemy position
             spawned++;
             //hook up to enemy death
+            lastSpawned = Time.time;
         }
     }
 
