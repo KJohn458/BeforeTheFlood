@@ -19,7 +19,7 @@ public class TestEnemy : MonoBehaviour
 
     void Update()
     {
-        if (timeStart + 1.25f <= Time.time)
+        if (timeStart + 5f <= Time.time)
         {
             Die();
         }

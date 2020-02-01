@@ -6,6 +6,8 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject[] spawnHelpers;
 
+    public static EnemySpawner Instance = null;
+
     Dictionary<GameObject, SpawnHelper> spawnDict = new Dictionary<GameObject, SpawnHelper>();
 
     private ObjectPooler.Key enemyKey = ObjectPooler.Key.Enemy;
@@ -22,6 +24,11 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         EnableSpawnHelper();
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else Destroy(gameObject);
     }
 
     void Update()
