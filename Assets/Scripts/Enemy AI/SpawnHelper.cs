@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpawnHelper : MonoBehaviour
 {
-    public Transform spawnPoint;
+    [Tooltip("Close comes first, then medium, and far last.")]
+    public Transform[] spawnPoints;
+
     public Transform wayPoint;
 }

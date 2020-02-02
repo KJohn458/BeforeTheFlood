@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     public int spawned;
     public int killed;
 
+    public int currentWaterLevel = 0;
+
     public Camera mainCamera;
 
     private void OnDisable()

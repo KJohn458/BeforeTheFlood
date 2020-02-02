@@ -23,12 +23,12 @@ public class Water : MonoBehaviour
     public void Buy()
     {
         if (!finished) {
-            Debug.Log("PLEASE");
             if (GameManager.Instance.SpendResource(cost[currentHeight+1]))
             {
-                Debug.Log("PLEASE WORKKKKK");
                 currentHeight++;
                 transform.DOMove(new Vector3(transform.position.x, heights[currentHeight], transform.position.z), 3);
+
+                GameManager.Instance.currentWaterLevel++;
             }
         }
     }
