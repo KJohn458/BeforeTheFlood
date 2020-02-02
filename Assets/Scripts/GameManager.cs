@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public bool paused = false;
     public SwitchCanvas winC, loseC;
 
-    int[] fib = { 3, 5 };
+    public int[] fib = { 3, 5 };
     public int spawned;
     public int killed;
 
@@ -106,9 +106,9 @@ public class GameManager : MonoBehaviour
                     } else if (Time.timeSinceLevelLoad - time >= timeToNextSpawn)
                     {
                         //EnemySpawner.Instance.SpawnEnemy();
-                        time = Time.timeSinceLevelLoad;
-                        spawned++;
-                        killed++;
+                       // time = Time.timeSinceLevelLoad;
+                        //spawned++;
+                        //killed++;
                     }
                 }
             } else

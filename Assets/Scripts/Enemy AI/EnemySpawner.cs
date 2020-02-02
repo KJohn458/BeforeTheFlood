@@ -6,11 +6,15 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject[] spawnHelpers;
 
-    public static EnemySpawner Instance = null;
-
     Dictionary<GameObject, SpawnHelper> spawnDict = new Dictionary<GameObject, SpawnHelper>();
 
     private ObjectPooler.Key enemyKey = ObjectPooler.Key.Enemy;
+
+    public float spawnBuffer;
+
+    public float waveLaneIncrease;
+
+    private bool hasWaveStarted = false;
 
     void Awake()
     {
@@ -21,30 +25,44 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        Instance = null;
-    }
-
     void Start()
     {
         EnableSpawnHelper();
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else Destroy(gameObject);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        CheckForWaveStart();
+
+        if (hasWaveStarted)
         {
-            SpawnEnemy();
+            if (Time.time - spawnBuffer >= GameManager.Instance.timeToNextSpawn && GameManager.Instance.spawned < GameManager.Instance.fib[0])
+            {
+                SpawnEnemy();
+                GameManager.Instance.spawned++;
+                spawnBuffer = Time.time;
+            }
+
+            if (GameManager.Instance.spawned == GameManager.Instance.fib[0] && GameManager.Instance.killed == GameManager.Instance.fib[0])
+            {
+                hasWaveStarted = false;
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.F))
+    }
+
+    void CheckForWaveStart()
+    {
+
+        if ((int)(GameManager.Instance.timeToNextWave - (Time.timeSinceLevelLoad - GameManager.Instance.time)) <= 0 && !hasWaveStarted)
         {
-            EnableSpawnHelper();
+            spawnBuffer = Time.time;
+
+            if ((GameManager.Instance.currentWave + 1) % waveLaneIncrease == 0)
+            {
+                EnableSpawnHelper();
+            }
+
+            hasWaveStarted = true;
         }
     }
 
