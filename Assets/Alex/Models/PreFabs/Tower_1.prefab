@@ -144,6 +144,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 2995908043081530213}
+--- !u!114 &5625188098898740350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8822441506379914636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e361c6997aa0c31408fc67bc81f2462b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 5060465907942823449, guid: 6d93f79be0b18e740b6efca41b4959ff,
+    type: 3}
+  shotSpeed: 2
+  shooter: {fileID: 0}
+  target: {fileID: 0}
+  turretLevel: 0
 --- !u!1001 &3249120508810242512
 PrefabInstance:
   m_ObjectHideFlags: 0
