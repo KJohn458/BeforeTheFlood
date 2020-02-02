@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, delay);
     }
 
-    private void OnCollisionEnter(Collision collision, int level)
+    private void OnCollisionEnter(Collision collision)
     {
         Destroy(gameObject);
         if (level == 1)
