@@ -15,16 +15,26 @@ public class GameManager : MonoBehaviour
     public bool planning = true;
     public float time = 0f;
     public float timeToNextWave = 45;
+    public float timeToNextSpawn = .8f;
     public GameObject waveContainer;
     public bool win = false;
     public GameObject selected { get; private set; }
     public bool paused = false;
     public SwitchCanvas winC, loseC;
 
+    int[] fib = { 3, 5 };
+    public int spawned;
+    public int killed;
+
     private void OnDisable()
     {
         Instance = null;
         time = Time.timeSinceLevelLoad;
+    }
+
+    public void SpawnedEnemyKilled()
+    {
+        killed++;
     }
 
     private void OnEnable()
@@ -64,11 +74,12 @@ public class GameManager : MonoBehaviour
     {
         time = Time.timeSinceLevelLoad;
         planning = true;
+        int i = fib[0] + fib[1];
+        fib[0] = fib[1];
+        fib[1] = i;
+        spawned = 0;
+        killed = 0;
         currentWave++;
-        if (currentWave == waveContainer.transform.childCount)
-        {
-            win = true;
-        }
     }
 
     public void BeginWave()
@@ -89,14 +100,15 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    Wave w = waveContainer.transform.GetChild(currentWave).GetComponent<Wave>();
-                    if (w.done)
+                    if (spawned == fib[0] && killed == fib[0])
                     {
                         WaveComplete();
-                    }
-                    else
+                    } else if (Time.timeSinceLevelLoad - time >= timeToNextSpawn)
                     {
-                        w.Spawn();
+                        //EnemySpawner.Instance.SpawnEnemy();
+                        time = Time.timeSinceLevelLoad;
+                        spawned++;
+                        killed++;
                     }
                 }
             } else

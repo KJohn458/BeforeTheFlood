@@ -167,13 +167,14 @@ GameObject:
   - component: {fileID: 4315643822781735080}
   - component: {fileID: 885584262764537328}
   - component: {fileID: 8270318033224329854}
+  - component: {fileID: 8145939212537030485}
   m_Layer: 5
   m_Name: LoseCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8912548955731147193
 RectTransform:
   m_ObjectHideFlags: 0
@@ -255,6 +256,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8145939212537030485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2381824400168261291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fde5a01735cc2b448a4eb49a156c084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tgt: {fileID: 2381824400168261291}
+  src: {fileID: 0}
+  togglePause: 0
 --- !u!1 &4040255838325703568
 GameObject:
   m_ObjectHideFlags: 0
