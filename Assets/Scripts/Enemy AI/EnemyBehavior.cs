@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using DG.Tweening;
 
 public class EnemyBehavior : MonoBehaviour
 {
@@ -13,12 +14,21 @@ public class EnemyBehavior : MonoBehaviour
 
     private Vector3 currentWaypoint = Vector3.zero;
 
+    private float attackTimer;
+    public float attackBuffer;
+    public GameObject attackBar;
+
     void Awake()
     {
         nav = GetComponent<NavMeshAgent>();
         stateMachine = GetComponent<EnemyStateMachine>();
         health = GetComponent<Health>();
 
+    }
+
+    void Start()
+    {
+        attackTimer = Time.time;
     }
 
     void OnEnable()
@@ -36,7 +46,7 @@ public class EnemyBehavior : MonoBehaviour
 
     public void Walking()
     {
-        if (Vector3.Distance(transform.position, currentWaypoint) < 2f)
+        if (Vector3.Distance(transform.position, currentWaypoint) < 10f)
         {
             stateMachine.switchState(EnemyStateMachine.StateType.Attack);
         }
@@ -44,7 +54,15 @@ public class EnemyBehavior : MonoBehaviour
 
     public void Attacking()
     {
-        Debug.Log("Attacking");
+
+        if (Time.time - attackTimer >= attackBuffer)
+        {
+            attackBar.transform.DOPunchScale(new Vector3(.1f, .1f, .8f), 1, 0, 0);
+
+            GameManager.Instance.AddLives(-1);
+
+            attackTimer = Time.time;
+        }
     }
 
     void OnEnemyDeath()

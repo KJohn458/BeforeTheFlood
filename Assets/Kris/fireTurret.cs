@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class fireTurret : MonoBehaviour
+public class FireTurret : MonoBehaviour
 {
     [SerializeField]
     private Health health;
@@ -12,6 +12,37 @@ public class fireTurret : MonoBehaviour
 
     [SerializeField]
     private int turretLevel;
+
+    public void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Enemy" && hasFired == false && turretLevel == 1)
+        {
+            //health = other.GetComponent<Health>();
+            other.GetComponent<Health>().TakeDamage(5);
+            timer = 3;
+            Debug.Log("Fire " + other);
+
+            hasFired = true;
+        }
+        else if (other.tag == "Enemy" && hasFired == false && turretLevel == 2)
+        {
+            health = other.GetComponent<Health>();
+            health.TakeDamage(5);
+            timer = 2;
+            Debug.Log("Fire");
+
+            hasFired = true;
+        }
+        else if (other.tag == "Enemy" && hasFired == false && turretLevel == 3)
+        {
+            health = other.GetComponent<Health>();
+            health.TakeDamage(5);
+            timer = 1;
+            Debug.Log("Fire");
+
+            hasFired = true;
+        }
+    }
 
 
 
@@ -43,35 +74,6 @@ public class fireTurret : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Enemy" && hasFired == false && turretLevel == 1)
-        {
-            //health = other.GetComponent<Health>();
-            other.GetComponent<Health>().TakeDamage(5);
-            timer = 3;
-            Debug.Log("Fire " + other);
-
-            hasFired = true;
-        }
-        else if (other.tag == "Enemy" && hasFired == false && turretLevel == 2)
-        {
-            health = other.GetComponent<Health>();
-            health.TakeDamage(5);
-            timer = 2;
-            Debug.Log("Fire");
-
-            hasFired = true;
-        }
-        else if (other.tag == "Enemy" && hasFired == false && turretLevel == 3)
-        {
-            health = other.GetComponent<Health>();
-            health.TakeDamage(5);
-            timer = 1;
-            Debug.Log("Fire");
-
-            hasFired = true;
-        }
-    }
+   
 
 }
