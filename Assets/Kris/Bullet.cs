@@ -19,20 +19,25 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, delay);
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        OnCollisionEnter(collision, level);
+    }
+
     private void OnCollisionEnter(Collision collision, int level)
     {
         Destroy(gameObject);
         if (level == 1)
         {
-            collision.gameObject.GetComponent<Health>().TakeDamage(1);
+            collision.gameObject.GetComponent<Health>()?.TakeDamage(1);
         }
         else if (level == 2)
         {
-            collision.gameObject.GetComponent<Health>().TakeDamage(2);
+            collision.gameObject.GetComponent<Health>()?.TakeDamage(2);
         }
         else if(level == 3)
         {
-            collision.gameObject.GetComponent<Health>().TakeDamage(3);
+            collision.gameObject.GetComponent<Health>()?.TakeDamage(3);
         }
 
     }
