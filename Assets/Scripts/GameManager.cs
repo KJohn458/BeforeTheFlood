@@ -19,6 +19,20 @@ public class GameManager : MonoBehaviour
     public bool win = false;
     public GameObject selected { get; private set; }
     public bool paused = false;
+    public SwitchCanvas winC, loseC;
+
+    private void OnDisable()
+    {
+        Instance = null;
+        time = Time.timeSinceLevelLoad;
+    }
+
+    private void OnEnable()
+    {
+        Time.timeScale = 1f;
+        time = Time.timeSinceLevelLoad;
+        ObjectPoolManager.dict.Clear();
+    }
 
     private void Start()
     {
@@ -48,7 +62,7 @@ public class GameManager : MonoBehaviour
 
     public void WaveComplete()
     {
-        time = Time.time;
+        time = Time.timeSinceLevelLoad;
         planning = true;
         currentWave++;
         if (currentWave == waveContainer.transform.childCount)
@@ -60,7 +74,7 @@ public class GameManager : MonoBehaviour
     public void BeginWave()
     {
         planning = false;
-        time = Time.time;
+        time = Time.timeSinceLevelLoad;
     }
 
     private void Update()
@@ -71,7 +85,7 @@ public class GameManager : MonoBehaviour
             {
                 if (planning)
                 {
-                    if (Time.time - time >= timeToNextWave) BeginWave();
+                    if (Time.timeSinceLevelLoad - time >= timeToNextWave) BeginWave();
                 }
                 else
                 {
@@ -85,8 +99,22 @@ public class GameManager : MonoBehaviour
                         w.Spawn();
                     }
                 }
+            } else
+            {
+                HandleWinLose();
             }
         }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            AddLives(-500);
+        }
+    }
+
+    public void HandleWinLose()
+    {
+        Time.timeScale = 0f;
+        if (win) winC.Switch();
+        else loseC.Switch();
     }
 
     public void ChangeSelection(GameObject o)
