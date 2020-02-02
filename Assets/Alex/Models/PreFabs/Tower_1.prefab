@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4121369805270758489}
   - component: {fileID: 401582445526510929}
+  - component: {fileID: 1497881793680865417}
+  - component: {fileID: 4238959128866286797}
   m_Layer: 0
   m_Name: Tower_1
   m_TagString: Untagged
@@ -52,6 +54,37 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1497881793680865417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110513171752928842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e361c6997aa0c31408fc67bc81f2462b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 5060465907942823449, guid: 6d93f79be0b18e740b6efca41b4959ff,
+    type: 3}
+  shotSpeed: 2
+  shooter: {fileID: 0}
+  target: {fileID: 0}
+  turretLevel: 0
+--- !u!65 &4238959128866286797
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110513171752928842}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 25, y: 1, z: 25}
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!1 &3807002017712477154
 GameObject:
   m_ObjectHideFlags: 0

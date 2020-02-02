@@ -74,7 +74,6 @@ public class ProjTurret : MonoBehaviour
     {
         target = other.gameObject;
         Vector3 interceptPoint = getTargetPosition(target, shooterPosition, shooterVelocity);
-        gameObject.transform.rotation = Quaternion.LookRotation(interceptPoint);
         GameObject bullet = Instantiate(projectile, shooterPosition, gameObject.transform.rotation) as GameObject;
         bullet.GetComponent<Bullet>().setLevel(turretLevel);
         bullet.GetComponent<Rigidbody>().velocity = interceptPoint.normalized * shotSpeed;
