@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4bfb47d74d9ee6439dc94e8a7e03768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceGained: 20
+  resourceGained: 10
   attackBuffer: 3
   attackBar: {fileID: 642240209372388083}
 --- !u!114 &4607820256242612409
@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b755b18002fda2145900fa423c0ffd8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setHealth: 5
+  setHealth: 10
   currentHealth: 0
 --- !u!54 &6628507001076226927
 Rigidbody:

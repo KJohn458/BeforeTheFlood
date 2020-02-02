@@ -48,7 +48,7 @@ public class SingleAttackTurret : MonoBehaviour
         if (other.tag == "Enemy" && hasFired == false && turretLevel == 1)
         {
             //health = other.GetComponent<Health>();
-            other.GetComponent<Health>().TakeDamage(5);
+            other.GetComponent<Health>().TakeDamage(10);
             timer = 10;
             Debug.Log("Fire " + other);
 
