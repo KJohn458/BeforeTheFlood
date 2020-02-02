@@ -345,7 +345,7 @@ Transform:
   m_LocalScale: {x: 0.5603, y: 0.5603, z: 0.5603}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &508089485
 GameObject:
@@ -388,6 +388,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2234365747187671410, guid: ccb51bd74f22c7c44b2d8c691436307b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 711825538}
+    - target: {fileID: 2234365747187671410, guid: ccb51bd74f22c7c44b2d8c691436307b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Buy
+      objectReference: {fileID: 0}
     - target: {fileID: 5200527667748114019, guid: ccb51bd74f22c7c44b2d8c691436307b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -396,6 +406,26 @@ PrefabInstance:
     - target: {fileID: 5200527667748114019, guid: ccb51bd74f22c7c44b2d8c691436307b,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5227705707447277106, guid: ccb51bd74f22c7c44b2d8c691436307b,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5227705707447277106, guid: ccb51bd74f22c7c44b2d8c691436307b,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5227705707447277106, guid: ccb51bd74f22c7c44b2d8c691436307b,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5227705707447277106, guid: ccb51bd74f22c7c44b2d8c691436307b,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5597707432597771373, guid: ccb51bd74f22c7c44b2d8c691436307b,
@@ -679,9 +709,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 711825537}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94db0902ead57f04a85d747bf81935fe, type: 3}
+  m_Script: {fileID: 11500000, guid: 978d07254b6b82e498d5cf9132e093ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heights:
+  - 54.2
+  - 41.7
+  - 26.2
+  - 16
+  cost: 190000003200000064000000b4000000
 --- !u!1 &1009746046
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,6 +904,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemySpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 645593605313400311, guid: 5d5a68116fc09fb4abd05013526bd939,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d5a68116fc09fb4abd05013526bd939, type: 3}
