@@ -5,16 +5,19 @@ using UnityEngine;
 public class ExplosionLoopActive : MonoBehaviour
 {
     public ParticleSystem ps;
+    
+    private float timer;
+    private float buffer = 10f;
 
     private void OnEnable()
     {
         ps.Play();
-        Debug.Log("Please");
+        timer = Time.time;
     }
 
     void Update()
     {
-        if (!ps.isPlaying)
+        if (Time.time - timer >= buffer)
         {
             ps.gameObject.SetActive(false);
         }
