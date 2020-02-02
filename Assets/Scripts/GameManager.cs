@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour
     public int spawned;
     public int killed;
 
+    public int currentWaterLevel = 0;
+
+    public Camera mainCamera;
+
     private void OnDisable()
     {
         Instance = null;
@@ -51,6 +55,8 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
         else Destroy(gameObject);
+
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     public void AddLives(int count)

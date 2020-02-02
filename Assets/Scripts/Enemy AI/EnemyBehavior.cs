@@ -8,7 +8,8 @@ public class EnemyBehavior : MonoBehaviour
     EnemyStateMachine stateMachine;
     NavMeshAgent nav;
     Health health;
-    Camera camera;
+
+    public int resourceGained;
 
     private Vector3 currentWaypoint = Vector3.zero;
 
@@ -18,8 +19,6 @@ public class EnemyBehavior : MonoBehaviour
         stateMachine = GetComponent<EnemyStateMachine>();
         health = GetComponent<Health>();
 
-        //Debug
-        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     void OnEnable()
@@ -59,7 +58,7 @@ public class EnemyBehavior : MonoBehaviour
     public void CheckDeathDebug()
     {
         RaycastHit hit;
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = GameManager.Instance.mainCamera.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hit))
         {
@@ -78,7 +77,7 @@ public class EnemyBehavior : MonoBehaviour
         gameObject.SetActive(false);
 
         GameManager.Instance.killed++;
-        Debug.Log("Enemies killed: " +  GameManager.Instance.killed);
+        GameManager.Instance.AddResource(resourceGained);
     }
 
     void OnDisable()

@@ -24,10 +24,10 @@ public class CameraController : MonoBehaviour
         }
         else if (Input.GetMouseButton(0))
         {
-            pivot.transform.eulerAngles += new Vector3(mousePosLastFrame[0].y - Input.mousePosition.y, mousePosLastFrame[0].x - Input.mousePosition.x);
+            /*pivot.transform.eulerAngles += new Vector3(mousePosLastFrame[0].y - Input.mousePosition.y, mousePosLastFrame[0].x - Input.mousePosition.x);
             if (pivot.transform.eulerAngles.x > 350) pivot.transform.eulerAngles = new Vector3(-10, pivot.transform.eulerAngles.y);
             if (pivot.transform.eulerAngles.x < 280) pivot.transform.eulerAngles = new Vector3(-80, pivot.transform.eulerAngles.y);
-            mousePosLastFrame[0] = Input.mousePosition;
+            mousePosLastFrame[0] = Input.mousePosition;*/
         }
         if (Input.GetMouseButtonDown(1))
         {

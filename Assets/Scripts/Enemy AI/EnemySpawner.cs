@@ -74,7 +74,7 @@ public class EnemySpawner : MonoBehaviour
 
         GameObject pooledObj = ObjectPooler.GetPooler(enemyKey).GetPooledObject();
 
-        pooledObj.transform.position = spawnDict[activeSpawnHelpers[rand]].spawnPoint.position;
+        pooledObj.transform.position = spawnDict[activeSpawnHelpers[rand]].spawnPoints[GameManager.Instance.currentWaterLevel].position;
 
         Quaternion targetRotation = Quaternion.LookRotation(spawnDict[activeSpawnHelpers[rand]].wayPoint.position);
         pooledObj.transform.rotation = targetRotation;
