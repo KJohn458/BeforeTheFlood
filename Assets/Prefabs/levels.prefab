@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0709e93a815f62a4799157053ee647d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelSceneName: InitialAITest
+  levelSceneName: FUCK
 --- !u!1 &1916240840662543114
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0709e93a815f62a4799157053ee647d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelSceneName: InitialAITest
+  levelSceneName: FUCK
 --- !u!1 &1916240841150193480
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0709e93a815f62a4799157053ee647d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelSceneName: InitialAITest
+  levelSceneName: FUCK
 --- !u!1 &1916240841161542415
 GameObject:
   m_ObjectHideFlags: 0
