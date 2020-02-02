@@ -26,19 +26,8 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision, int level)
     {
+        collision.gameObject.GetComponent<Health>()?.TakeDamage(level);
         Destroy(gameObject);
-        if (level == 1)
-        {
-            collision.gameObject.GetComponent<Health>()?.TakeDamage(1);
-        }
-        else if (level == 2)
-        {
-            collision.gameObject.GetComponent<Health>()?.TakeDamage(2);
-        }
-        else if(level == 3)
-        {
-            collision.gameObject.GetComponent<Health>()?.TakeDamage(3);
-        }
 
     }
 
