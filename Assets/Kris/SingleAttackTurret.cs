@@ -5,7 +5,7 @@ using UnityEngine;
 public class SingleAttackTurret : MonoBehaviour
 {
     [SerializeField]
-    private BasicEnemy enemy;
+    private Health health;
 
     private float timer = 0.0f;
     private bool hasFired = false;
@@ -40,8 +40,8 @@ public class SingleAttackTurret : MonoBehaviour
     {
         if (other.tag == "Enemy" && hasFired == false && turretLevel == 1)
         {
-            enemy = other.GetComponent<BasicEnemy>();
-            enemy.subHealth();
+            health = other.GetComponent<Health>();
+            health.TakeDamage(5);
             
             Debug.Log("Fire");
 
@@ -49,8 +49,8 @@ public class SingleAttackTurret : MonoBehaviour
         }
         else if (other.tag == "Enemy" && hasFired == false && turretLevel == 2)
         {
-            enemy = other.GetComponent<BasicEnemy>();
-            enemy.subHealth();
+            health = other.GetComponent<Health>();
+            health.TakeDamage(5);
 
             Debug.Log("Fire");
 
@@ -58,8 +58,8 @@ public class SingleAttackTurret : MonoBehaviour
         }
         else if (other.tag == "Enemy" && hasFired == false && turretLevel == 3)
         {
-            enemy = other.GetComponent<BasicEnemy>();
-            enemy.subHealth();
+            health = other.GetComponent<Health>();
+            health.TakeDamage(5);
 
             Debug.Log("Fire");
 

@@ -11,8 +11,9 @@ public class ObjectPool
         obj = o;
     }
 
-    public void Create(int s = 1)
+    public void Create(bool reset = false, int s = 1)
     {
+        if (reset) objs.Clear();
         int queueSize = objs.Count;
         for (int i = 0+queueSize; i < s; i++)
         {

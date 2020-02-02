@@ -23,7 +23,7 @@ public class ProjTurret : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        turretLevel = 0;
+        turretLevel = 1;
         shooter = gameObject;
         shooterPosition = shooter.transform.position;
         shooterVelocity = shooter.GetComponent<Rigidbody>() ? shooter.GetComponent<Rigidbody>().velocity : Vector3.zero;
@@ -69,7 +69,8 @@ public class ProjTurret : MonoBehaviour
     {
         target = other.gameObject;
         Vector3 interceptPoint = getTargetPosition(target, shooterPosition, shooterVelocity);
-        GameObject bullet = Instantiate(projectile, shooterPosition, Quaternion.identity) as GameObject;
+        gameObject.transform.rotation = Quaternion.LookRotation(interceptPoint);
+        GameObject bullet = Instantiate(projectile, shooterPosition, gameObject.transform.rotation) as GameObject;
         bullet.GetComponent<Rigidbody>().velocity = interceptPoint.normalized * shotSpeed;
         hasFired = true;
     }
