@@ -16,7 +16,8 @@ public class ObjectPooler : MonoBehaviour
     {
         Enemy,
         LightningTower,
-        FireTower
+        FireTower,
+        EnemySpawn
     }
 
     public Key key;
