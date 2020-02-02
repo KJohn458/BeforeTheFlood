@@ -46,6 +46,11 @@ public class ProjTurret : MonoBehaviour
         }
     }
 
+    public int returnLevel()
+    {
+        return turretLevel;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy" && hasFired == false && turretLevel == 1)
@@ -71,6 +76,7 @@ public class ProjTurret : MonoBehaviour
         Vector3 interceptPoint = getTargetPosition(target, shooterPosition, shooterVelocity);
         gameObject.transform.rotation = Quaternion.LookRotation(interceptPoint);
         GameObject bullet = Instantiate(projectile, shooterPosition, gameObject.transform.rotation) as GameObject;
+        bullet.GetComponent<Bullet>().setLevel(turretLevel);
         bullet.GetComponent<Rigidbody>().velocity = interceptPoint.normalized * shotSpeed;
         hasFired = true;
     }

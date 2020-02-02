@@ -16,7 +16,7 @@ public class SingleAttackTurret : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        turretLevel = 0;
+        turretLevel = 1;
     }
 
     // Update is called once per frame
@@ -40,10 +40,10 @@ public class SingleAttackTurret : MonoBehaviour
     {
         if (other.tag == "Enemy" && hasFired == false && turretLevel == 1)
         {
-            health = other.GetComponent<Health>();
-            health.TakeDamage(5);
-            
-            Debug.Log("Fire");
+            //health = other.GetComponent<Health>();
+            other.GetComponent<Health>().TakeDamage(5);
+            timer = 10;
+            Debug.Log("Fire " + other);
 
             hasFired = true;
         }
@@ -51,7 +51,7 @@ public class SingleAttackTurret : MonoBehaviour
         {
             health = other.GetComponent<Health>();
             health.TakeDamage(5);
-
+            timer = 8;
             Debug.Log("Fire");
 
             hasFired = true;
@@ -60,7 +60,7 @@ public class SingleAttackTurret : MonoBehaviour
         {
             health = other.GetComponent<Health>();
             health.TakeDamage(5);
-
+            timer = 6;
             Debug.Log("Fire");
 
             hasFired = true;

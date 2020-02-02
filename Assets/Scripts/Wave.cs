@@ -26,7 +26,7 @@ public class Wave : MonoBehaviour
     {
         p = ObjectPoolManager.getPool(enemy);
         p.Create(true, toSpawn);
-        h = EnemySpawner.Instance.spawnHelpers[lane % EnemySpawner.Instance.spawnHelpers.Length].GetComponent<SpawnHelper>();
+        //h = EnemySpawner.Instance.spawnHelpers[lane % EnemySpawner.Instance.spawnHelpers.Length].GetComponent<SpawnHelper>();
     }
 
     public bool ChildrenDone()
