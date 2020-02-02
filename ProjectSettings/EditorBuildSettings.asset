@@ -8,10 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: 7164ff897eaae314ea1c95fbf0986106
-  - enabled: 1
+  - enabled: 0
     path: Assets/Prefabs/InitialAITest.unity
     guid: 3aa4dac9d7c34534b80120f66926270d
   - enabled: 1
     path: Assets/Scenes/LevelSelect.unity
     guid: e18b48910a4c40a4d9f4a49abb99d2d4
+  - enabled: 1
+    path: Assets/Scenes/Test/Scene/FUCK.unity
+    guid: 6d99a417c74316240a35632a06866b92
   m_configObjects: {}
