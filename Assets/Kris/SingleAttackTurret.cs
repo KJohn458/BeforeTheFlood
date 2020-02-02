@@ -13,10 +13,14 @@ public class SingleAttackTurret : MonoBehaviour
     [SerializeField]
     private int turretLevel;
 
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         turretLevel = 1;
+
     }
 
     // Update is called once per frame
@@ -34,6 +38,9 @@ public class SingleAttackTurret : MonoBehaviour
         {
             hasFired = false;
         }
+
+       
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -66,4 +73,5 @@ public class SingleAttackTurret : MonoBehaviour
             hasFired = true;
         }
     }
+
 }
