@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
     Dictionary<GameObject, SpawnHelper> spawnDict = new Dictionary<GameObject, SpawnHelper>();
 
     private ObjectPooler.Key enemyKey = ObjectPooler.Key.Enemy;
+    private ObjectPooler.Key particleKey = ObjectPooler.Key.EnemySpawn;
 
     public float spawnBuffer;
 
@@ -28,6 +29,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         EnableSpawnHelper();
+        spawnBuffer = Time.time;
     }
 
     void Update()
@@ -55,7 +57,6 @@ public class EnemySpawner : MonoBehaviour
 
         if ((int)(GameManager.Instance.timeToNextWave - (Time.timeSinceLevelLoad - GameManager.Instance.time)) <= 0 && !hasWaveStarted)
         {
-            spawnBuffer = Time.time;
 
             if ((GameManager.Instance.currentWave + 1) % waveLaneIncrease == 0)
             {
@@ -72,11 +73,15 @@ public class EnemySpawner : MonoBehaviour
 
         int rand = Random.Range(0, activeSpawnHelpers.Count);
 
+        GameObject pooledParticle = ObjectPooler.GetPooler(particleKey).GetPooledObject();
+        pooledParticle.transform.position = new Vector3(spawnDict[activeSpawnHelpers[rand]].spawnPoints[GameManager.Instance.currentWaterLevel].position.x , spawnDict[activeSpawnHelpers[rand]].spawnPoints[GameManager.Instance.currentWaterLevel].position.y + 5, spawnDict[activeSpawnHelpers[rand]].spawnPoints[GameManager.Instance.currentWaterLevel].position.z); 
+        pooledParticle.SetActive(true);
+
         GameObject pooledObj = ObjectPooler.GetPooler(enemyKey).GetPooledObject();
 
-        pooledObj.transform.position = spawnDict[activeSpawnHelpers[rand]].spawnPoint.position;
+        pooledObj.transform.position = spawnDict[activeSpawnHelpers[rand]].spawnPoints[GameManager.Instance.currentWaterLevel].position;
 
-        Quaternion targetRotation = Quaternion.LookRotation(spawnDict[activeSpawnHelpers[rand]].wayPoint.position);
+        Quaternion targetRotation = Quaternion.LookRotation(transform.position - spawnDict[activeSpawnHelpers[rand]].wayPoint.position);
         pooledObj.transform.rotation = targetRotation;
 
         pooledObj.SetActive(true);

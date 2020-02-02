@@ -51,9 +51,15 @@ MonoBehaviour:
   planning: 1
   time: 0
   timeToNextWave: 5
+  timeToNextSpawn: 0.8
   waveContainer: {fileID: 0}
   win: 0
   paused: 0
+  winC: {fileID: 0}
+  loseC: {fileID: 0}
+  fib: 0300000005000000
+  spawned: 0
+  killed: 0
 --- !u!114 &7328697805027992956
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Water : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Water : MonoBehaviour
     private void Start()
     {
         Instance = this;
+
+
     }
 
     public int GetCost() { return costs[currentHeight + 1]; }
@@ -23,7 +26,9 @@ public class Water : MonoBehaviour
             if (GameManager.Instance.SpendResource(costs[currentHeight+1]))
             {
                 currentHeight++;
-                transform.position = new Vector3(transform.position.x, heights[currentHeight], transform.position.z);
+                transform.DOMove(new Vector3(transform.position.x, heights[currentHeight], transform.position.z), 3);
+
+                GameManager.Instance.currentWaterLevel++;
             }
         }
     }

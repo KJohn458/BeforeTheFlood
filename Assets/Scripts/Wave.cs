@@ -72,7 +72,7 @@ public class Wave : MonoBehaviour
             obj.SetActive(true);
             //obj.GetComponent<TestEnemy>().Create(this);
             obj.GetComponent<NavMeshAgent>().enabled = false;
-            obj.transform.position = h.spawnPoint.transform.position;
+            //obj.transform.position = h.spawnPoint.transform.position;
             obj.GetComponent<NavMeshAgent>().enabled = true;
             obj.GetComponent<EnemyBehavior>().FindPath(h.wayPoint);
             obj.GetComponent<Health>().OnDeath += ()=>SpawnedEnemyKilled(obj);

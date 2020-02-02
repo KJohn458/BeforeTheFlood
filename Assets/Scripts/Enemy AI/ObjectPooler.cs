@@ -14,7 +14,10 @@ public class ObjectPooler : MonoBehaviour
 
     public enum Key
     {
-        Enemy
+        Enemy,
+        LightningTower,
+        FireTower,
+        EnemySpawn
     }
 
     public Key key;

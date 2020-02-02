@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using DG.Tweening;
 
 public class EnemyBehavior : MonoBehaviour
 {
     EnemyStateMachine stateMachine;
     NavMeshAgent nav;
     Health health;
-    Camera camera;
+
+    public int resourceGained;
 
     private Vector3 currentWaypoint = Vector3.zero;
+
+    private float attackTimer;
+    public float attackBuffer;
+    public GameObject attackBar;
 
     void Awake()
     {
@@ -18,22 +24,17 @@ public class EnemyBehavior : MonoBehaviour
         stateMachine = GetComponent<EnemyStateMachine>();
         health = GetComponent<Health>();
 
-        //Debug
-        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+    }
+
+    void Start()
+    {
+        attackTimer = Time.time;
     }
 
     void OnEnable()
     {
         health.ResetHealth();
         health.OnDeath += OnEnemyDeath;
-    }
-
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            CheckDeathDebug();
-        }
     }
 
     public void FindPath(Transform waypoint)
@@ -45,7 +46,7 @@ public class EnemyBehavior : MonoBehaviour
 
     public void Walking()
     {
-        if (Vector3.Distance(transform.position, currentWaypoint) < 2f)
+        if (Vector3.Distance(transform.position, currentWaypoint) < 10f)
         {
             stateMachine.switchState(EnemyStateMachine.StateType.Attack);
         }
@@ -53,22 +54,14 @@ public class EnemyBehavior : MonoBehaviour
 
     public void Attacking()
     {
-        Debug.Log("Attacking");
-    }
 
-    public void CheckDeathDebug()
-    {
-        RaycastHit hit;
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out hit))
+        if (Time.time - attackTimer >= attackBuffer)
         {
-            Transform objectHit = hit.transform;
+            attackBar.transform.DOPunchScale(new Vector3(.1f, .1f, .8f), 1, 0, 0);
 
-            if (objectHit.gameObject.tag == "Enemy")
-            {
-                health.TakeDamage(20);
-            }
+            GameManager.Instance.AddLives(-1);
+
+            attackTimer = Time.time;
         }
     }
 
@@ -78,7 +71,7 @@ public class EnemyBehavior : MonoBehaviour
         gameObject.SetActive(false);
 
         GameManager.Instance.killed++;
-        Debug.Log("Enemies killed: " +  GameManager.Instance.killed);
+        GameManager.Instance.AddResource(resourceGained);
     }
 
     void OnDisable()
