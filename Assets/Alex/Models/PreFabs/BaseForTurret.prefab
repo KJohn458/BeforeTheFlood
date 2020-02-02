@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1823743784370020405}
   - component: {fileID: 5364829649458715852}
   - component: {fileID: 2856089465060473832}
+  - component: {fileID: 5248315074355186070}
   m_Layer: 0
   m_Name: BaseForTurret
   m_TagString: TowerSpawner
@@ -96,3 +97,16 @@ MonoBehaviour:
     type: 3}
   cost: 20
   tower: 0
+--- !u!65 &5248315074355186070
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5931067161797355536}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.5238132, y: 0.045751903, z: 5.6497893}
+  m_Center: {x: 0, y: 1.110223e-16, z: -0.0000001192093}

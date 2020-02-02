@@ -43,6 +43,7 @@ public class TowerSpawner : MonoBehaviour
             {
                 if (hit.transform.gameObject.tag == "TowerSpawner" && hit.transform.gameObject == transform.gameObject)
                 {
+                    Debug.Log("Test here");
                     if (GameManager.Instance.SpendResource(cost))
                     {
                         SpawnTower();
