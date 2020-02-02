@@ -15,7 +15,7 @@ public class GameplayUI : MonoBehaviour
 
     void Update()
     {
-        health.text = "Health: " + GameManager.Instance.lives;
+        health.text =  "" + GameManager.Instance.lives;
         resources.text = "Resources: " + GameManager.Instance.resource;
         wave.text = "Wave " + (GameManager.Instance.currentWave+1);
         if (GameManager.Instance.planning && !GameManager.Instance.win)
