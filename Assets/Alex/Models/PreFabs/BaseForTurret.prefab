@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 7211454806286440963}
   - component: {fileID: 1823743784370020405}
   - component: {fileID: 5364829649458715852}
+  - component: {fileID: 2856089465060473832}
   m_Layer: 0
   m_Name: BaseForTurret
-  m_TagString: Untagged
+  m_TagString: TowerSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,9 +26,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5931067161797355536}
-  m_LocalRotation: {x: 0.00495325, y: -0, z: -0, w: 0.9999878}
+  m_LocalRotation: {x: 0.0049566734, y: 0, z: 0, w: 0.9999877}
   m_LocalPosition: {x: 5.127074, y: -0.06, z: -9.062871}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -79,3 +80,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &2856089465060473832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5931067161797355536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4eb77bbf4e3412458fb2cf97cf4c56c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerToSpawn: {fileID: 2196248073370146118, guid: 443d3db633cd6db49a03f072c67a62c6,
+    type: 3}
+  cost: 20
+  tower: 0

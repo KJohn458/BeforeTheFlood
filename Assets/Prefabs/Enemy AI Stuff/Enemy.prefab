@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4bfb47d74d9ee6439dc94e8a7e03768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resourceGained: 20
 --- !u!114 &4607820256242612409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setHealth: 100
+  currentHealth: 0
 --- !u!114 &-5194588962525886983
 MonoBehaviour:
   m_ObjectHideFlags: 0
