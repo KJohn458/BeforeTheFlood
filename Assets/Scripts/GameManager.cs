@@ -85,7 +85,8 @@ public class GameManager : MonoBehaviour
         fib[1] = i;
         spawned = 0;
         killed = 0;
-        currentWave++;
+        if (Water.Instance.finished) win = true;
+        else currentWave++;
     }
 
     public void BeginWave()
@@ -106,7 +107,7 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    if (spawned == fib[0] && killed == fib[0])
+                    if (spawned >= fib[0] && killed >= fib[0])
                     {
                         WaveComplete();
                     } else if (Time.timeSinceLevelLoad - time >= timeToNextSpawn)
@@ -121,11 +122,11 @@ public class GameManager : MonoBehaviour
             {
                 HandleWinLose();
             }
-        }
+        }/*
         if (Input.GetKeyDown(KeyCode.F))
         {
             AddLives(-500);
-        }
+        }*/
     }
 
     public void HandleWinLose()
