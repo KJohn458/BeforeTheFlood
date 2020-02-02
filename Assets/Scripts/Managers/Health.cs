@@ -6,7 +6,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public float setHealth;
-    private float currentHealth;
+    public float currentHealth;
 
     public event Action OnDeath;
 

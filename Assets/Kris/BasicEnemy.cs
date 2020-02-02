@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class BasicEnemy : MonoBehaviour
 {
-    public int health;
+    //public int health;
     GameObject enemy;
+    Health health;
+
+    private void Awake()
+    {
+        health = GetComponent<Health>();
+        health.OnDeath += OnEnemyDeath;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        health = 1;
+        //health = 1;
+        
         enemy = gameObject;
         enemy.GetComponent<Rigidbody>().AddForce(transform.right * 50);
     }
@@ -18,14 +26,16 @@ public class BasicEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(health == 0)
-        {
-            Destroy(gameObject);
-        }
+       
     }
 
     public void subHealth()
     {
-        health -= 1; 
+       // health -= 1; 
+    }
+
+    void OnEnemyDeath()
+    {
+        health.OnDeath -= OnEnemyDeath;
     }
 }
