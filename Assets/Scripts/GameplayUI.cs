@@ -5,7 +5,7 @@ using TMPro;
 
 public class GameplayUI : MonoBehaviour
 {
-    public TextMeshProUGUI health, resources, wave, timer;
+    public TextMeshProUGUI health, resources, wave, timer, water;
     public GameObject upgradePopup;
 
     private void Start()
@@ -18,6 +18,8 @@ public class GameplayUI : MonoBehaviour
         health.text =  "" + GameManager.Instance.lives;
         resources.text = "Resources: " + GameManager.Instance.resource;
         wave.text = "Wave " + (GameManager.Instance.currentWave+1);
+        if (!Water.Instance.finished) water.text = "Reverse Flooding \nCost: " + Water.Instance.GetCost();
+        else water.transform.parent.gameObject.SetActive(false);
         if (GameManager.Instance.planning && !GameManager.Instance.win)
         {
             wave.text = wave.text + " begins in:";
