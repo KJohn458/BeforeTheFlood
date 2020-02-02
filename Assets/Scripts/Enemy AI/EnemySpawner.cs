@@ -48,7 +48,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    void SpawnEnemy()
+    public void SpawnEnemy()
     {
         List<GameObject> activeSpawnHelpers = ActiveSpawnHelpers(true);
 
