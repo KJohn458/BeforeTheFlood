@@ -27,14 +27,6 @@ public class EnemyBehavior : MonoBehaviour
         health.OnDeath += OnEnemyDeath;
     }
 
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            CheckDeathDebug();
-        }
-    }
-
     public void FindPath(Transform waypoint)
     {
         currentWaypoint = waypoint.position;
@@ -53,22 +45,6 @@ public class EnemyBehavior : MonoBehaviour
     public void Attacking()
     {
         Debug.Log("Attacking");
-    }
-
-    public void CheckDeathDebug()
-    {
-        RaycastHit hit;
-        Ray ray = GameManager.Instance.mainCamera.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out hit))
-        {
-            Transform objectHit = hit.transform;
-
-            if (objectHit.gameObject.tag == "Enemy")
-            {
-                health.TakeDamage(20);
-            }
-        }
     }
 
     void OnEnemyDeath()

@@ -28,6 +28,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         EnableSpawnHelper();
+        spawnBuffer = Time.time;
     }
 
     void Update()
@@ -55,7 +56,6 @@ public class EnemySpawner : MonoBehaviour
 
         if ((int)(GameManager.Instance.timeToNextWave - (Time.timeSinceLevelLoad - GameManager.Instance.time)) <= 0 && !hasWaveStarted)
         {
-            spawnBuffer = Time.time;
 
             if ((GameManager.Instance.currentWave + 1) % waveLaneIncrease == 0)
             {
