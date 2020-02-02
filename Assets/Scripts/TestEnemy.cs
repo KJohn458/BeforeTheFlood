@@ -5,11 +5,11 @@ using UnityEngine;
 public class TestEnemy : MonoBehaviour
 {
     float timeStart;
-    Wave source;
+    //Wave source;
 
     public void Create(Wave s)
     {
-        source = s;
+        //source = s;
     }
 
     public void OnEnable()
@@ -27,7 +27,8 @@ public class TestEnemy : MonoBehaviour
 
     void Die()
     {
-        source.SpawnedEnemyKilled(gameObject);
+        //source.SpawnedEnemyKilled(gameObject);
         gameObject.SetActive(false);
+        GameManager.Instance.killed++;
     }
 }

@@ -77,6 +77,8 @@ public class EnemyBehavior : MonoBehaviour
         health.OnDeath -= OnEnemyDeath;
         gameObject.SetActive(false);
 
+        GameManager.Instance.killed++;
+        Debug.Log("Enemies killed: " +  GameManager.Instance.killed);
     }
 
     void OnDisable()
